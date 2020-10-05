@@ -5,3 +5,12 @@ func _on_DeathArea_body_entered(body):
 	
 func _on_DeathArea2_body_entered(body):
 	get_tree().reload_current_scene()
+
+func _on_DeathArea3_body_entered(body):
+	get_tree().reload_current_scene()
+
+func _on_DeathArea4_body_entered(body):
+	get_tree().reload_current_scene()
+
+func _on_DeathArea5_body_entered(body):
+	get_tree().reload_current_scene()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Script/DeathArea.gd" type="Script" id=1]
 [ext_resource path="res://Script/Player2.gd" type="Script" id=2]
@@ -15,6 +15,15 @@ extents = Vector2( 19.2296, 63.5145 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 339.086, 46.6279 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 116.983, 21.2655 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 333.899, 47.7643 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 269.375, 14.4959 )
 
 [node name="World" type="Node2D"]
 position = Vector2( 5.03967, -3.77979 )
@@ -135,6 +144,27 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2"]
 position = Vector2( -798.518, 515.355 )
 shape = SubResource( 3 )
+
+[node name="DeathArea3" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea3"]
+position = Vector2( -256.473, 419.607 )
+shape = SubResource( 4 )
+
+[node name="DeathArea4" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea4"]
+position = Vector2( 1697.06, 514.774 )
+shape = SubResource( 5 )
+
+[node name="DeathArea5" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea5"]
+position = Vector2( 1637.65, -284.678 )
+shape = SubResource( 6 )
 [connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_DeathArea_body_entered"]
 [connection signal="body_entered" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_entered"]
 [connection signal="body_exited" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_exited"]
@@ -155,3 +185,6 @@ shape = SubResource( 3 )
 [connection signal="body_entered" from="YSort/Rope12" to="YSort/Rope12" method="_on_Rope_body_entered"]
 [connection signal="body_exited" from="YSort/Rope12" to="YSort/Rope12" method="_on_Rope_body_exited"]
 [connection signal="body_entered" from="DeathArea2" to="DeathArea2" method="_on_DeathArea2_body_entered"]
+[connection signal="body_entered" from="DeathArea3" to="DeathArea3" method="_on_DeathArea3_body_entered"]
+[connection signal="body_entered" from="DeathArea4" to="DeathArea4" method="_on_DeathArea4_body_entered"]
+[connection signal="body_entered" from="DeathArea5" to="DeathArea5" method="_on_DeathArea5_body_entered"]
