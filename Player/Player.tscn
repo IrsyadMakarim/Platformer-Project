@@ -1,14 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprite/uU2hmLi.png" type="Texture" id=1]
-[ext_resource path="res://Script/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scene/Chain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestPlayer.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 24 )
 
-[sub_resource type="CircleShape2D" id=2]
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -23,7 +22,7 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 64, 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -38,7 +37,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 64, 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "walk"
 length = 0.4
 loop = true
@@ -56,14 +55,13 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-script = ExtResource( 2 )
+collision_layer = 2
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 14.6466 )
-shape = SubResource( 2 )
+[node name="Chain" parent="." instance=ExtResource( 2 )]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2.14655, -6.92134 )
@@ -72,9 +70,9 @@ region_enabled = true
 region_rect = Rect2( 0, 64, 64, 64 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/walk = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

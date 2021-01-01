@@ -2,9 +2,12 @@
 
 [ext_resource path="res://tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprite/rope.png" type="Texture" id=2]
-[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Script/Player2.gd" type="Script" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Player.gd" type="Script" id=4]
 [ext_resource path="res://Script/Rope.gd" type="Script" id=5]
+
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.4097, 65.8768 )

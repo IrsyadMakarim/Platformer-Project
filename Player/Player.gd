@@ -3,14 +3,15 @@ extends KinematicBody2D
 const MAX_SPEED = 400
 const ACCELERATION = 30
 const JUMP_HEIGHT = 600
-var GRAVITY = 30
 const UP = Vector2(0, -1)
 const WALL_SLIDE_ACCELERATION = 10
 const MAX_WALL_SLIDE_SPEED = 120
+const CHAIN_PULL = 85
 
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite
 
+var GRAVITY = 30
 var jump_was_pressed = false
 var can_jump = false
 var motion = Vector2()
@@ -19,11 +20,39 @@ var dub_jumps = 0
 var max_num_dub_jumps = 1
 var facing_right = false
 var ladder_on = false
+var chain_velocity := Vector2(0,0)
 
 func _ready():
 	pass # Replace with function body.
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			# We clicked the mouse -> shoot()
+			$Chain.shoot(event.position - get_viewport().size * 0.5)
+		else:
+			# We released the mouse -> release()
+			$Chain.release()
+	
+
 func _physics_process(delta):
+	run()
+	jump()
+	hook()
+
+func hook():
+	if $Chain.hooked:
+		chain_velocity = to_local($Chain.tip).normalized() * CHAIN_PULL
+		if chain_velocity.y > 0:
+			chain_velocity.y *= 0.55
+		else:
+			chain_velocity.y *= 1.2
+	else:
+		# Not hooked -> no chain velocity
+		chain_velocity = Vector2(0,0)
+	motion += chain_velocity
+
+func run():
 	if Input.is_action_pressed("move_right"):
 		motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
 		if is_on_floor():
@@ -38,9 +67,10 @@ func _physics_process(delta):
 		if is_on_floor():
 			play_anim("idle")
 		motion.x = lerp(motion.x, 0, .2)
-		
+
+func jump():
 	if Input.is_action_just_released("jump") && motion.y <-200:
-		motion.y = -100
+		motion.y = -150
 		
 	if Input.is_action_just_pressed("jump"):
 		jump_was_pressed = true
@@ -54,10 +84,11 @@ func _physics_process(delta):
 		elif dub_jumps > 0:
 			motion.y = -JUMP_HEIGHT
 			dub_jumps = dub_jumps - 1
-	
 	if is_on_floor():
 		can_jump = true
 		dub_jumps = max_num_dub_jumps
+		if motion.y >= 5:
+			motion.y = 5
 		if jump_was_pressed == true:
 			motion.y = -JUMP_HEIGHT
 	elif !is_on_floor():
@@ -75,10 +106,7 @@ func _physics_process(delta):
 			motion.y += GRAVITY
 	else:
 		motion.y += GRAVITY
-	
-#	if Input.is_action_just_pressed("dash"):
-#		dash()
-	
+		
 	motion = move_and_slide(motion, UP)
 	
 	if !is_on_floor() && !is_on_wall():
@@ -107,13 +135,6 @@ func remember_jump_time():
 	yield(get_tree().create_timer(.06), "timeout")
 	jump_was_pressed = false
 	pass
-
-#func dash():
-#	if Input.is_action_pressed("move_right"):
-#		motion.x = 5000
-#	elif Input.is_action_pressed("move_left"):
-#		motion.x = -5000
-#	move_and_slide(motion)
 
 func play_anim(anim_name):
 	if anim_player.is_playing() and anim_player.current_animation == anim_name:
