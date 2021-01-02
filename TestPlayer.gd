@@ -83,3 +83,4 @@ func _physics_process(_delta: float) -> void:
 		elif can_jump:
 			can_jump = false	# Used air-jump
 			velocity.y = -JUMP_FORCE
+

@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Script/DeathArea.gd" type="Script" id=1]
-[ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://Sprite/rope.png" type="Texture" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
@@ -35,7 +34,6 @@ tile_data = PoolIntArray( -524307, 1, 0, -524306, 1, 0, -524305, 1, 0, -524304, 
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 34.1905, 417.823 )
-script = ExtResource( 2 )
 
 [node name="DeathArea" type="Area2D" parent="."]
 position = Vector2( 533.169, 488.271 )

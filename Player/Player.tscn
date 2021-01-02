@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprite/uU2hmLi.png" type="Texture" id=1]
 [ext_resource path="res://Scene/Chain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://TestPlayer.gd" type="Script" id=3]
+[ext_resource path="res://Player/Player.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 24 )
@@ -76,3 +76,8 @@ anims/walk = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -21,6 +21,8 @@ var max_num_dub_jumps = 1
 var facing_right = false
 var ladder_on = false
 var chain_velocity := Vector2(0,0)
+var fly_speed = 15
+var fly_time = 100
 
 func _ready():
 	pass # Replace with function body.
@@ -84,6 +86,10 @@ func jump():
 		elif dub_jumps > 0:
 			motion.y = -JUMP_HEIGHT
 			dub_jumps = dub_jumps - 1
+	if fly_time > 0 :
+		if Input.is_action_pressed("move_up"):
+			motion.y -= JUMP_HEIGHT - 550
+			fly_time -= 1
 	if is_on_floor():
 		can_jump = true
 		dub_jumps = max_num_dub_jumps
@@ -140,3 +146,7 @@ func play_anim(anim_name):
 	if anim_player.is_playing() and anim_player.current_animation == anim_name:
 		return
 	anim_player.play(anim_name)
+
+func _on_Timer_timeout():
+	if fly_time < 100:
+		fly_time += 1
