@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Script/DeathArea.gd" type="Script" id=1]
-[ext_resource path="res://tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://Scene/ProgressBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprite/tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://Sprite/rope.png" type="Texture" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Script/Rope.gd" type="Script" id=6]
@@ -163,6 +164,15 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea5"]
 position = Vector2( 1637.65, -284.678 )
 shape = SubResource( 6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource( 2 )]
+margin_left = 985.508
+margin_top = 1.65756
+margin_right = 1279.51
+margin_bottom = 41.6576
+percent_visible = true
 [connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_DeathArea_body_entered"]
 [connection signal="body_entered" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_entered"]
 [connection signal="body_exited" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_exited"]

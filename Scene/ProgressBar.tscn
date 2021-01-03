@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/ProgressBar.gd" type="Script" id=1]
+
+
+[node name="ProgressBar" type="ProgressBar"]
+margin_right = 294.0
+margin_bottom = 40.0
+percent_visible = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 2.0
+margin_top = 40.0
+margin_right = 42.0
+margin_bottom = 59.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Fly"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

@@ -21,8 +21,7 @@ var max_num_dub_jumps = 1
 var facing_right = false
 var ladder_on = false
 var chain_velocity := Vector2(0,0)
-var fly_speed = 15
-var fly_time = 100
+
 
 func _ready():
 	pass # Replace with function body.
@@ -86,10 +85,12 @@ func jump():
 		elif dub_jumps > 0:
 			motion.y = -JUMP_HEIGHT
 			dub_jumps = dub_jumps - 1
-	if fly_time > 0 :
-		if Input.is_action_pressed("move_up"):
-			motion.y -= JUMP_HEIGHT - 550
-			fly_time -= 1
+	if Global.fly_time > 0 :
+		if ladder_on == false:
+			if Input.is_action_pressed("move_up"):
+				motion.y -= JUMP_HEIGHT - 560
+				Global.fly_time -= 1
+				Global.emit_signal("fly_time")
 	if is_on_floor():
 		can_jump = true
 		dub_jumps = max_num_dub_jumps
@@ -98,10 +99,11 @@ func jump():
 		if jump_was_pressed == true:
 			motion.y = -JUMP_HEIGHT
 	elif !is_on_floor():
-		if dub_jumps > 0:
-			play_anim("jump")
-		elif !is_on_wall():
-			play_anim("jump")
+		if Global.fly_time > 0:
+			if dub_jumps > 0:
+				play_anim("jump")
+			elif !is_on_wall():
+				play_anim("jump")
 	
 	if is_on_wall() && (Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left")):
 		can_jump = true
@@ -148,5 +150,6 @@ func play_anim(anim_name):
 	anim_player.play(anim_name)
 
 func _on_Timer_timeout():
-	if fly_time < 100:
-		fly_time += 1
+	if Global.fly_time < 100:
+		Global.fly_time += 1.2
+		Global.emit_signal("fly_time")
