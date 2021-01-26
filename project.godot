@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Platformer"
+config/name="Jiba"
 run/main_scene="res://Scene/World.tscn"
 config/icon="res://icon.png"
 
@@ -25,8 +25,11 @@ Global="*res://Script/Global.gd"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=1920
+window/size/test_height=1080
+window/stretch/mode="viewport"
 
 [input]
 

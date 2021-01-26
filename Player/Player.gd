@@ -21,19 +21,22 @@ var max_num_dub_jumps = 1
 var facing_right = false
 var ladder_on = false
 var chain_velocity := Vector2(0,0)
+var can_fly = false
+var can_grapple = false
 
 
 func _ready():
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed:
-			# We clicked the mouse -> shoot()
-			$Chain.shoot(event.position - get_viewport().size * 0.5)
-		else:
-			# We released the mouse -> release()
-			$Chain.release()
+#	if can_grapple == true:
+		if event is InputEventMouseButton:
+			if event.pressed:
+				# We clicked the mouse -> shoot()
+				$Chain.shoot(event.position - get_viewport().size * 0.5)
+			else:
+				# We released the mouse -> release()
+				$Chain.release()
 	
 
 func _physics_process(delta):
@@ -72,25 +75,30 @@ func run():
 func jump():
 	if Input.is_action_just_released("jump") && motion.y <-200:
 		motion.y = -150
-		
+
 	if Input.is_action_just_pressed("jump"):
 		jump_was_pressed = true
 		remember_jump_time()
 		if can_jump == true:
+			$Jump.play()
 			motion.y = -JUMP_HEIGHT
 			if is_on_wall() && Input.is_action_pressed("move_right"):
 				motion.x = -MAX_SPEED
 			elif is_on_wall() && Input.is_action_pressed("move_left"):
 				motion.x = MAX_SPEED
 		elif dub_jumps > 0:
+			$Jump.play()
 			motion.y = -JUMP_HEIGHT
 			dub_jumps = dub_jumps - 1
 	if Global.fly_time > 0 :
 		if ladder_on == false:
-			if Input.is_action_pressed("move_up"):
-				motion.y -= JUMP_HEIGHT - 560
-				Global.fly_time -= 1
-				Global.emit_signal("fly_time")
+#			if can_fly == true:
+				if Input.is_action_pressed("move_up"):
+					if not $Fly.is_playing():
+						$Fly.play()
+					motion.y -= JUMP_HEIGHT - 560
+					Global.fly_time -= 1.2
+					Global.emit_signal("fly_time")
 	if is_on_floor():
 		can_jump = true
 		dub_jumps = max_num_dub_jumps
