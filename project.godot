@@ -10,7 +10,6 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
@@ -25,8 +24,8 @@ Global="*res://Script/Global.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=1280
+window/size/height=720
 window/size/test_width=1920
 window/size/test_height=1080
 window/stretch/mode="viewport"
@@ -77,5 +76,5 @@ left_click={
 
 [rendering]
 
-environment/default_clear_color=Color( 1, 0.980392, 1, 1 )
+environment/default_clear_color=Color( 0.992157, 0.992157, 0.992157, 1 )
 environment/default_environment="res://default_env.tres"

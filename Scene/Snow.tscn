@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Curve" id=1]
+min_value = -40.0
+max_value = 40.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0613426, 18.6364 ), 0.0, 0.0, 0, 0, Vector2( 0.12037, -17.7273 ), 0.0, 0.0, 0, 0, Vector2( 0.207176, 23.7273 ), 506.745, 506.745, 0, 0, Vector2( 0.289352, -33 ), -802.909, -802.909, 0, 0, Vector2( 0.383102, 24.4545 ), 0.0, 0.0, 0, 0, Vector2( 0.461806, -5.36364 ), 0.0, 0.0, 0, 0, Vector2( 0.553241, -28.6364 ), 894.943, 894.943, 0, 0, Vector2( 0.627315, 40 ), 731.345, 731.345, 0, 0, Vector2( 0.696759, -17 ), 0.0, 0.0, 0, 0, Vector2( 0.788194, 23 ), 390.019, 390.019, 0, 0, Vector2( 0.871528, -20.6364 ), -481.746, -481.746, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 1920, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 10, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel_curve = SubResource( 2 )
+scale = 2.0
+scale_random = 1.0
+
+[node name="Particles2D" type="Particles2D"]
+amount = 500
+lifetime = 10.0
+randomness = 1.0
+process_material = SubResource( 3 )

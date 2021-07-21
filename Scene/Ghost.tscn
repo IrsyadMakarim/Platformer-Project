@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/Ghost.gd" type="Script" id=1]
+
+[node name="Ghost" type="Sprite"]
+script = ExtResource( 1 )
+
+[node name="Alpha_tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="Alpha_tween" to="." method="_on_Alpha_tween_tween_completed"]
