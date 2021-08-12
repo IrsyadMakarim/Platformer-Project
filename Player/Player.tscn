@@ -124,5 +124,7 @@ volume_db = 10.0
 [node name="GhostTimer" type="Timer" parent="."]
 wait_time = 0.04
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="DashCooldown" type="Timer" parent="."]
+
 [connection signal="timeout" from="GhostTimer" to="." method="_on_GhostTimer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]

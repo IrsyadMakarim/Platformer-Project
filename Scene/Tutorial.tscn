@@ -1,14 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprite/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprite/rope.png" type="Texture" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://Scene/ProgressBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Script/Rope.gd" type="Script" id=5]
-
-
-
-
+[ext_resource path="res://Background/_11_background.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.4097, 65.8768 )
@@ -17,7 +14,6 @@ extents = Vector2( 24.4097, 65.8768 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 52.3259, 164.049 )
-script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -58,6 +54,28 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Rope3"]
 position = Vector2( 0, 3.14981 )
 shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource( 4 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_bottom = 0.0
+percent_visible = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.05, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BG"]
+position = Vector2( -1529.57, -1066.78 )
+scale = Vector2( 2.73534, 1.83347 )
+texture = ExtResource( 7 )
+centered = false
+
 [connection signal="body_entered" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_entered"]
 [connection signal="body_exited" from="YSort/Rope" to="YSort/Rope" method="_on_Rope_body_exited"]
 [connection signal="body_entered" from="YSort/Rope2" to="YSort/Rope2" method="_on_Rope_body_entered"]

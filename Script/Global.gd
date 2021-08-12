@@ -1,7 +1,7 @@
 extends Node
 
-var fly_speed = 15
-var fly_time = 100
+var dashTime = 3.0
+var ladder_on = false
 
-signal fly_time(value_changed)
-
+signal fly_time_reduce(value_changed)
+signal fly_time_tambah(value_changed)

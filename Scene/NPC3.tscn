@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scene/NPC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scene/Dialog3.tscn" type="PackedScene" id=2]
+
+[node name="NPC" instance=ExtResource( 1 )]
+dialogNew = ExtResource( 2 )
+pathUI = "World/NPC3/UI"

@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	
-	dist = 35 * player.direction
+	dist = 30 * player.direction
 	
 	if haveGem:
 		animPlayer.stop(true)

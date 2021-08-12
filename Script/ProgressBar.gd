@@ -1,8 +1,12 @@
 extends ProgressBar
 
 func _ready():
-	Global.connect("fly_time", self, "update_fly")
-	value = Global.fly_time
+	value = Global.dashTime
+	Global.connect("fly_time_reduce", self, "update_fly_reduce")
+	Global.connect("fly_time_tambah", self, "update_fly_tambah")
 
-func update_fly():
-	value = Global.fly_time
+func update_fly_reduce(amount):
+	value -= Global.dashTime
+
+func update_fly_tambah(amount):
+	value += Global.dashTime

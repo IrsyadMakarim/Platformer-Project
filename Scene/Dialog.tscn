@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/ColorRect.gd" type="Script" id=1]
+
+[node name="Dialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 144.0
+margin_top = 560.0
+margin_right = 1176.0
+margin_bottom = 711.0
+color = Color( 0.529412, 0.0941176, 0.0941176, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="RichTextLabel" parent="ColorRect"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 256.0
+margin_bottom = 56.0
+text = "Name goes here"
+scroll_active = false
+
+[node name="Dialog" type="RichTextLabel" parent="ColorRect"]
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 136.0
+text = "Dialog goes here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+one_shot = true

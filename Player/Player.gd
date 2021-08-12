@@ -17,6 +17,7 @@ onready var ghostTime = get_node("GhostTimer")
 onready var chain = get_node("Chain")
 onready var jumpSnd = get_node("Jump")
 onready var flySnd = get_node("Fly")
+onready var dashTimer = get_node("DashCooldown")
 
 var GRAVITY = 30
 var jump_was_pressed = false
@@ -26,7 +27,6 @@ var isGravity = true
 var dub_jumps = 0
 var max_num_dub_jumps = 1
 var facing_right = false
-var ladder_on = false
 var chain_velocity := Vector2(0,0)
 var can_fly = false
 var can_grapple = false
@@ -37,10 +37,8 @@ var dash_direction : int
 var canWalk = true
 var canDash = true
 var inDash = false
-
-
-func _ready():
-	pass # Replace with function body.
+var dashCooldown = false
+var timeToDash = 3.0
 
 func _input(event: InputEvent) -> void:
 #	if can_grapple == true:
@@ -53,8 +51,8 @@ func _input(event: InputEvent) -> void:
 				chain.release()
 
 func _physics_process(delta):
-	dash_timer += delta
 	
+	dash_timer += delta
 	run()
 	jump()
 	hook()
@@ -117,15 +115,15 @@ func jump():
 			jumpSnd.play()
 			motion.y = -JUMP_HEIGHT
 			dub_jumps = dub_jumps - 1
-	if Global.fly_time > 0 :
-		if ladder_on == false:
-#			if can_fly == true:
-				if Input.is_action_pressed("move_up"):
-					if not flySnd.is_playing():
-						flySnd.play()
-					motion.y -= JUMP_HEIGHT - 560
-					Global.fly_time -= 1.2
-					Global.emit_signal("fly_time")
+#	if Global.fly_time > 0 :
+#		if ladder_on == false:
+##			if can_fly == true:
+#				if Input.is_action_pressed("move_up"):
+#					if not flySnd.is_playing():
+#						flySnd.play()
+#					motion.y -= JUMP_HEIGHT - 560
+#					Global.fly_time -= 1.2
+#					Global.emit_signal("fly_time")
 	if is_on_floor() and not inDash:
 		canDash = true
 		can_jump = true
@@ -136,11 +134,10 @@ func jump():
 			motion.y = -JUMP_HEIGHT
 	elif !is_on_floor():
 		canDash = false
-		if Global.fly_time > 0:
-			if dub_jumps > 0:
-				play_anim("jump")
-			elif !is_on_wall():
-				play_anim("jump")
+		if dub_jumps > 0:
+			play_anim("jump")
+		elif !is_on_wall():
+			play_anim("jump")
 	
 	if is_on_wall() && (Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left")):
 		can_jump = true
@@ -161,7 +158,7 @@ func jump():
 		coyote_time()
 		pass
 	
-	if ladder_on == true:
+	if Global.ladder_on == true:
 		GRAVITY = 0
 		can_jump = true
 		dub_jumps = max_num_dub_jumps 
@@ -182,12 +179,17 @@ func dash():
 	if dash_timer < 0.5:
 		inDash = true
 	
-	if Input.is_action_just_pressed("dash"):
-		motion.x = DASH * dash_direction * DASH_SPEED
-		dash_timer = 0
-		canDash = false
-		inDash = true
-		ghostTime.start()
+	if dashCooldown == false:
+		if Input.is_action_just_pressed("dash"):
+			motion.x = DASH * dash_direction * DASH_SPEED
+			dash_timer = 0
+			canDash = false
+			inDash = true
+			ghostTime.start()
+			dashCooldown = true
+			dashTimer.set_wait_time(Global.dashTime)
+			dashTimer.start()
+			Global.emit_signal("fly_time_reduce", Global.dashTime)
 
 func coyote_time():
 	yield(get_tree().create_timer(.06), "timeout")
@@ -204,10 +206,10 @@ func play_anim(anim_name):
 		return
 	anim_player.play(anim_name)
 
-func _on_Timer_timeout():
-	if Global.fly_time < 100:
-		Global.fly_time += 1.2
-		Global.emit_signal("fly_time")
+#func _on_Timer_timeout():
+#	if Global.fly_time < 100:
+#		Global.fly_time += 1.2
+#		Global.emit_signal("fly_time")
 
 func _on_GhostTimer_timeout():
 	var this_ghost = preload("res://Scene/Ghost.tscn").instance()
@@ -215,3 +217,7 @@ func _on_GhostTimer_timeout():
 	this_ghost.position = position
 	this_ghost.texture = animSprite.frames.get_frame(animSprite.animation, animSprite.frame)
 	this_ghost.flip_h = animSprite.flip_h
+
+func _on_DashCooldown_timeout():
+	dashCooldown = false
+	Global.emit_signal("fly_time_tambah", Global.dashTime)

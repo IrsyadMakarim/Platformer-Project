@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Script/ProgressBar.gd" type="Script" id=1]
 
-
 [node name="ProgressBar" type="ProgressBar"]
 margin_right = 294.0
 margin_bottom = 40.0
+max_value = 3.0
 percent_visible = false
 script = ExtResource( 1 )
 __meta__ = {
@@ -13,12 +13,12 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 2.0
-margin_top = 40.0
-margin_right = 42.0
-margin_bottom = 59.0
+margin_left = 1.60315
+margin_top = -12.3842
+margin_right = 41.6031
+margin_bottom = 6.61577
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Fly"
+text = "Dash"
 __meta__ = {
 "_edit_use_anchors_": false
 }
