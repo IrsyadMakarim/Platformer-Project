@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Script/DeathArea.gd" type="Script" id=1]
 [ext_resource path="res://Scene/ProgressBar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Script/Rope.gd" type="Script" id=6]
 [ext_resource path="res://Scene/Gems.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scene/Rope.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprite/Sun.shader" type="Shader" id=11]
 [ext_resource path="res://icon.png" type="Texture" id=12]
 [ext_resource path="res://Background/_07_huge_clouds.png" type="Texture" id=13]
@@ -92,15 +93,7 @@ position = Vector2( 34.1905, 417.823 )
 
 [node name="RopeSort" type="YSort" parent="."]
 
-[node name="Rope" type="Area2D" parent="RopeSort"]
-position = Vector2( 542.028, 319.868 )
-script = ExtResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeSort/Rope"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="RopeSort/Rope"]
-texture = ExtResource( 4 )
+[node name="Rope" parent="RopeSort" instance=ExtResource( 8 )]
 
 [node name="Rope6" type="Area2D" parent="RopeSort"]
 position = Vector2( -355.453, -65.8704 )
@@ -302,8 +295,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="body_entered" from="RopeSort/Rope" to="RopeSort/Rope" method="_on_Rope_body_entered"]
-[connection signal="body_exited" from="RopeSort/Rope" to="RopeSort/Rope" method="_on_Rope_body_exited"]
 [connection signal="body_entered" from="RopeSort/Rope6" to="RopeSort/Rope6" method="_on_Rope_body_entered"]
 [connection signal="body_exited" from="RopeSort/Rope6" to="RopeSort/Rope6" method="_on_Rope_body_exited"]
 [connection signal="body_entered" from="RopeSort/Rope3" to="RopeSort/Rope3" method="_on_Rope_body_entered"]
