@@ -1,9 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://level.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://environment.tres" type="TileSet" id=3]
 [ext_resource path="res://decorative.tres" type="TileSet" id=4]
+[ext_resource path="res://Sprite/TileMaps/background1.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/TileMaps/background2.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/TileMaps/background3.png" type="Texture" id=7]
+[ext_resource path="res://Sprite/TileMaps/background4a.png" type="Texture" id=8]
+[ext_resource path="res://Sprite/yQpnORm.png" type="Texture" id=9]
+
+[sub_resource type="TileSet" id=1]
+0/name = "yQpnORm.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "yQpnORm.png 1"
+1/texture = ExtResource( 9 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 64, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [node name="TestLevel" type="Node2D"]
 
@@ -11,7 +46,7 @@
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 131090, 0, 0, 131092, 0, 0, 131094, 0, 0, 196608, 3, 0, 196616, 1, 0, 196618, 1, 0, 196620, 1, 0, 196622, 1, 0, 196632, 1, 0, 196636, 3, 0, 262150, 2, 0, 262160, 2, 0, 262170, 2, 0, 458756, 3, 0, 458760, 3, 0, 458764, 3, 0, 458769, 3, 0, 458774, 3, 0, 589871, 4, 0, 786424, 11, 0, 720902, 0, 0, 720926, 6, 0, 720930, 8, 0, 720938, 5, 0, 720947, 6, 0, 851979, 9, 0, 983038, 7, 0, 917511, 7, 0, 917520, 7, 0, 917523, 17, 0, 917529, 7, 0, 917531, 17, 0, 917542, 17, 0, 917543, 7, 0, 917544, 17, 0, 917547, 17, 0 )
+tile_data = PoolIntArray( 524266, 12, 0, 589871, 4, 0, 786390, 8, 0, 786418, 11, 0, 786424, 11, 0, 720902, 0, 0, 720926, 6, 0, 720930, 8, 0, 720938, 5, 0, 720947, 6, 0, 851979, 9, 0, 982980, 7, 0, 982989, 536870919, 0, 982993, 9, 0, 983038, 7, 0, 917511, 7, 0, 917520, 7, 0, 917523, 17, 0, 917529, 7, 0, 917531, 17, 0, 917542, 17, 0, 917543, 7, 0, 917544, 17, 0, 917547, 17, 0, 917555, 7, 0, 917564, 7, 0, 917573, 7, 0, 917582, 7, 0, 917591, 7, 0, 917600, 7, 0, 917609, 7, 0, 917618, 7, 0, 917627, 7, 0, 917636, 7, 0, 917645, 7, 0, 917654, 7, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 244.943, -4.67194 )
@@ -21,7 +56,7 @@ z_index = -1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -524251, 4, 0, -393179, 4, 0, -393176, 1, 0, -262107, 4, 0, -196568, 1, 0, -131035, 4, 0, 37, 4, 0, 40, 1, 0, 131109, 4, 0, 196648, 1, 0, 262181, 4, 0, 393253, 4, 0, 393256, 1, 0, 393263, 7, 0, 524325, 4, 0, 589864, 1, 0, 655372, 19, 0, 655378, 18, 0, 655380, 19, 0, 655386, 18, 0, 655388, 19, 0, 655397, 4, 0, 786469, 4, 0, 786472, 1, 0 )
+tile_data = PoolIntArray( -524251, 4, 0, -393179, 4, 0, -393176, 1, 0, -262107, 4, 0, -196568, 1, 0, -131035, 4, 0, 37, 4, 0, 40, 1, 0, 131109, 4, 0, 196648, 1, 0, 262181, 4, 0, 393253, 4, 0, 393256, 1, 0, 524325, 4, 0, 589864, 1, 0, 655397, 4, 0, 786469, 4, 0, 786472, 1, 0 )
 
 [node name="Decorative" type="TileMap" parent="."]
 z_index = -1
@@ -30,3 +65,37 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -393218, 0, 0, -327693, 0, 0, 393212, 3, 0, 393215, 3, 0, 917502, 6, 0, 851969, 6, 0 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BG1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 960, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BG1"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="BG2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 960, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BG2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="BG3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 960, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BG3"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="BG4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 960, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/BG4"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+format = 1

@@ -51,7 +51,7 @@ noise = SubResource( 9 )
 [sub_resource type="ShaderMaterial" id=11]
 shader = ExtResource( 19 )
 shader_param/scale = Vector2( 10.5662, 15.5909 )
-shader_param/zoom = 0.529732
+shader_param/zoom = 0.5
 shader_param/gap_stretch = Vector2( 0.5, 0.05 )
 shader_param/refraction_stretch = Vector2( 2, 0.8 )
 shader_param/refraction_strength = 0.02
